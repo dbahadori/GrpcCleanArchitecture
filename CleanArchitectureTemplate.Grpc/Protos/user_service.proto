@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "CleanArchitectureTemplate.Grpc";
+
+package user;
+
+import "google/protobuf/empty.proto";  // Import the Empty message type
+
+service UserService {
+    rpc GetUserById(GetUserByIdRequest) returns (UserResponse);
+    rpc AddUser(AddUserRequest) returns (google.protobuf.Empty);
+    rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
+    rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+    rpc GetAllUsers(GetAllUsersRequest) returns (UserListResponse);
+}
+
+message UserResponse {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string national_code = 4;
+    string birth_day = 5; // Format: yyyy-MM-dd
+}
+
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+message GetAllUsersRequest {
+    int32 page_number = 1; // Page number
+    int32 page_size = 2;   // Number of items per page
+}
+
+message AddUserRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string national_code = 3;
+    string birth_day = 4; // Format: yyyy-MM-dd
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string national_code = 4;
+    string birth_day = 5; // Format: yyyy-MM-dd
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message UserListResponse {
+    repeated UserResponse users = 1;
+}
