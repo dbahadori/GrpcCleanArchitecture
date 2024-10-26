@@ -11,6 +11,7 @@ namespace CleanArchitectureTemplate.Infrastructure.Persistence.EntityConfigurati
         {
             #region User
             builder.HasKey(x => x.Id);
+            builder.HasIndex(u => u.NationalCode).IsUnique();
             #endregion
 
         }
